@@ -9,6 +9,7 @@ public class Stopwatch : MonoBehaviour
     public TMP_Text stopwatchText;
     public Button lapButton;
 
+    public ScrollRect lapGroupScrollRect;
     public Transform lapGroup;
     public TMP_Text lapText;
 
@@ -47,6 +48,10 @@ public class Stopwatch : MonoBehaviour
         string lapTimeString = FormatTime(lapElapsedTime);
 
         lapText.text = $"\nLap {lapCount}: {lapTimeString}";
+
+        RectTransform rectTransform = lapGroup.GetComponent<RectTransform>();
+        RectTransform scrollAreaTransform = lapGroupScrollRect.GetComponent<RectTransform>();
+        lapGroupScrollRect.content.localPosition = new Vector2(-425f, rectTransform.rect.height + 240f);
     }
 
     string FormatTime(float time)
